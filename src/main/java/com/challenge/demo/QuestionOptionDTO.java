@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class QuestionAnswerDTO {
+public class QuestionOptionDTO {
 
 	private Long id;
 
 	private Long questionId;
 
-	private String answer;
+	private String option;
 
-	private boolean isCorrectAnswer;
+	private boolean isCorrectOption;
 
 	private Date createdAt;
 
 	private Date updatedAt;
 
-	public static QuestionAnswer transform(final QuestionAnswerDTO newQADto, final Question question) {
-		final QuestionAnswer newQa = new QuestionAnswer();
-		newQa.setAnswer(newQADto.getAnswer());
-		newQa.setIsCorrectAnswer(newQADto.getIsCorrectAnswer());
+	public static QuestionOption transform(final QuestionOptionDTO newQADto, final Question question) {
+		final QuestionOption newQa = new QuestionOption();
+		newQa.setOption(newQADto.getOption());
+		newQa.setIsCorrectOption(newQADto.getIsCorrectOption());
 		newQa.setQuestion(question);
 
 		return newQa;
 	}
 
-	public static QuestionAnswerDTO build(final QuestionAnswer save) {
-		final QuestionAnswerDTO newQaDto = new QuestionAnswerDTO();
+	public static QuestionOptionDTO build(final QuestionOption save) {
+		final QuestionOptionDTO newQaDto = new QuestionOptionDTO();
 
 		newQaDto.setId(save.getId());
-		newQaDto.setAnswer(save.getAnswer());
-		newQaDto.setIsCorrectAnswer(save.isCorrectAnswer());
+		newQaDto.setOption(save.getOption());
+		newQaDto.setIsCorrectOption(save.isCorrectOption());
 		newQaDto.setCreatedAt(save.getCreatedAt());
 		newQaDto.setUpdatedAt(save.getUpdatedAt());
 		newQaDto.setQuestionId(save.getQuestion().getQuestionId());
@@ -40,9 +40,9 @@ public class QuestionAnswerDTO {
 		return newQaDto;
 	}
 
-	public static List<QuestionAnswerDTO> build(final List<QuestionAnswer> answers) {
-		final List<QuestionAnswerDTO> ret = new ArrayList<>();
-		for (QuestionAnswer qa : answers) {
+	public static List<QuestionOptionDTO> build(final List<QuestionOption> options) {
+		final List<QuestionOptionDTO> ret = new ArrayList<>();
+		for (QuestionOption qa : options) {
 			ret.add(build(qa));
 		}
 		return ret;
@@ -64,20 +64,20 @@ public class QuestionAnswerDTO {
 		this.questionId = questionId;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public String getOption() {
+		return option;
 	}
 
-	public void setAnswer(final String answer) {
-		this.answer = answer;
+	public void setOption(final String option) {
+		this.option = option;
 	}
 
-	public boolean getIsCorrectAnswer() {
-		return isCorrectAnswer;
+	public boolean getIsCorrectOption() {
+		return isCorrectOption;
 	}
 
-	public void setIsCorrectAnswer(final boolean correctAnswer) {
-		isCorrectAnswer = correctAnswer;
+	public void setIsCorrectOption(final boolean correctOption) {
+		isCorrectOption = correctOption;
 	}
 
 	public Date getCreatedAt() {

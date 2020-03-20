@@ -27,7 +27,7 @@ public class QuestionController {
 	SiteRepository siteRepository;
 
 	@Autowired
-	QuestionAnswerRepository qaRepository;
+	QuestionOptionRepository qaRepository;
 
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
@@ -82,25 +82,25 @@ public class QuestionController {
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
-	@PostMapping("/{id}/answers")
+	@PostMapping("/{id}/options")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<QuestionAnswerDTO> createQuestionAnswers(@PathVariable(value = "id") Long questionId,
-																   @RequestBody QuestionAnswerDTO newQADto) {
+	public ResponseEntity<QuestionOptionDTO> createQuestionOptions(@PathVariable(value = "id") Long questionId,
+																   @RequestBody QuestionOptionDTO newQADto) {
 		return questionRepository
 				.findById(questionId)
 				.map(question -> {
-					final QuestionAnswer newQa = QuestionAnswerDTO.transform(newQADto, question);
-					return new ResponseEntity<>(QuestionAnswerDTO.build(qaRepository.save(newQa)), HttpStatus.CREATED);
+					final QuestionOption newQa = QuestionOptionDTO.transform(newQADto, question);
+					return new ResponseEntity<>(QuestionOptionDTO.build(qaRepository.save(newQa)), HttpStatus.CREATED);
 				})
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 
-	@GetMapping("/{id}/answers")
+	@GetMapping("/{id}/options")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<List<QuestionAnswerDTO>> getQuestionAnswers(@PathVariable(value = "id") Long questionId) {
+	public ResponseEntity<List<QuestionOptionDTO>> getQuestionOptions(@PathVariable(value = "id") Long questionId) {
 		return questionRepository
 				.findById(questionId)
-				.map(question -> ResponseEntity.ok(QuestionAnswerDTO.build(question.getAnswers())))
+				.map(question -> ResponseEntity.ok(QuestionOptionDTO.build(question.getOptions())))
 				.orElseGet(() -> ResponseEntity.notFound().build());
 	}
 }
