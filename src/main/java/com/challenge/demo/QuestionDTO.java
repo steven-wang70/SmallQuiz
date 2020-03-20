@@ -10,16 +10,22 @@ public class QuestionDTO {
 
 	private Long siteId;
 
+	private int questionType;
+	
+	private List<String> dimInfo;
+	
 	private String question;
 
 	private Date createdAt;
 
 	private Date updatedAt;
-
+	
 	public static QuestionDTO build(Question question) {
 		final QuestionDTO obj = new QuestionDTO();
 		obj.setSiteId(question.getSite().getSiteId());
 		obj.setQuestionId(question.getQuestionId());
+		obj.setQuestionType(question.getQuestionType().getQuestionCode());
+		obj.setDimInfo(question.getDimInfo());
 		obj.setQuestion(question.getQuestion());
 		obj.setUpdatedAt(question.getUpdatedAt());
 		obj.setCreatedAt(question.getCreatedAt());
@@ -41,6 +47,8 @@ public class QuestionDTO {
 		final Question newQ = new Question();
 		newQ.setSite(site);
 		newQ.setQuestion(incomingQuestion.getQuestion());
+		newQ.setQuestionType(QuestionType.fromCode((incomingQuestion.getQuestionType())));
+		newQ.setDimInfo(incomingQuestion.getDimInfo());
 
 		return newQ;
 	}
@@ -53,6 +61,22 @@ public class QuestionDTO {
 		this.siteId = siteId;
 	}
 
+	public int getQuestionType() {
+		return questionType;
+	}
+	
+	public void setQuestionType(int questionType) {
+		this.questionType = questionType;
+	}
+	
+	public List<String> getDimInfo() {
+		return dimInfo;
+	}
+	
+	public void setDimInfo(List<String> dimInfo) {
+		this.dimInfo = dimInfo;
+	}
+	
 	public String getQuestion() {
 		return question;
 	}

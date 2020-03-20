@@ -86,6 +86,10 @@ public class QuestionController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<QuestionOptionDTO> createQuestionOptions(@PathVariable(value = "id") Long questionId,
 																   @RequestBody QuestionOptionDTO newQADto) {
+		if (!QuestionOption.ValidateOptionDim(newQADto.getOptionDim())) {
+			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
+		}
+
 		return questionRepository
 				.findById(questionId)
 				.map(question -> {
