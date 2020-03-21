@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -30,10 +32,10 @@ public class QuestionDisplayController {
 	 * @param readerid
 	 * @return
 	 */
-	@GetMapping("/{siteuuid}?reader={readeruuid}")
-	public ResponseEntity<QuestionDTOforDisplay> getNextQuestion(@PathVariable(value = "siteuuid") String strSiteUUID, @PathVariable(value = "readeruuid") String strReaderUUID) {
+	@RequestMapping(value={"/{siteuuid}"}, method=RequestMethod.GET)
+	public ResponseEntity<QuestionDTOforDisplay> getNextQuestion(@PathVariable(value = "siteuuid") String strSiteUUID, @RequestParam String reader) {
 		UUID siteUUID = UUID.fromString(strSiteUUID);
-		UUID readerUUID = UUID.fromString(strReaderUUID);
+		UUID readerUUID = UUID.fromString(reader);
 		if (siteUUID == null || readerUUID == null) {
 			return ResponseEntity.notFound().build();
 		}
