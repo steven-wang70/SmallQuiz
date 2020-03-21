@@ -13,7 +13,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
@@ -21,9 +20,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "site")
 @EntityListeners(AuditingEntityListener.class)
-public class Site implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public class Site {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "site_id")
@@ -80,13 +77,11 @@ public class Site implements Serializable {
 		final Site site = (Site) o;
 		return Objects.equals(siteId, site.siteId) &&
 				Objects.equals(siteUUID, site.siteUUID) &&
-				Objects.equals(url, site.url) &&
-				Objects.equals(createdAt, site.createdAt) &&
-				Objects.equals(updatedAt, site.updatedAt);
+				Objects.equals(url, site.url);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(siteId, siteUUID, url, createdAt, updatedAt);
+		return Objects.hash(siteId, siteUUID, url);
 	}
 }

@@ -24,8 +24,6 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 public class QuestionPersist extends QuestionBase {
 
-	private static final long serialVersionUID = 1L;
-
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "site_id", referencedColumnName = "site_id")
 	private Site site;

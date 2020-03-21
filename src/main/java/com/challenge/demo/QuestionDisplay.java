@@ -1,6 +1,5 @@
 package com.challenge.demo;
 
-import java.io.Serializable;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -28,8 +27,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "question_display")
 @EntityListeners(AuditingEntityListener.class)
-public class QuestionDisplay implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class QuestionDisplay {
 
 	QuestionDisplay(Site site, UUID readerUUID) {
 		this.siteId = site.getSiteId();

@@ -1,6 +1,5 @@
 package com.challenge.demo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,9 +18,7 @@ import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
 @MappedSuperclass
-public abstract class QuestionBase implements Serializable {
-	private static final long serialVersionUID = 1L;
-
+public abstract class QuestionBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "question_id")

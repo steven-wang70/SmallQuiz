@@ -1,6 +1,5 @@
 package com.challenge.demo;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -29,8 +28,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "reader_activity")
 @EntityListeners(AuditingEntityListener.class)
-public class ReaderActivity implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class ReaderActivity {
 
 	/**
 	 * This is the unique id of the option. It does not affect the order of display.

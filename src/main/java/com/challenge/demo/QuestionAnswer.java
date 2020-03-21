@@ -1,6 +1,5 @@
 package com.challenge.demo;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -23,9 +22,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "question_answer")
 @EntityListeners(AuditingEntityListener.class)
-public class QuestionAnswer implements Serializable {
-	private static final long serialVersionUID = 1L;
-	
+public class QuestionAnswer {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "answer_id")

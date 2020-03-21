@@ -17,15 +17,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "question_option")
 @EntityListeners(AuditingEntityListener.class)
-public class QuestionOption implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class QuestionOption {
 
 	/**
 	 * This is the unique id of the option. It does not affect the order of display.
