@@ -20,6 +20,10 @@ REM dim left to right
 curl --header "Content-Type: application/json" --request POST --data "{\"option\": \"Male\", \"optionIndex\": 1, \"optionDim\": 1}" http://localhost:8080/questions/6/options
 curl --header "Content-Type: application/json" --request POST --data "{\"option\": \"Female\", \"optionIndex\": 2, \"optionDim\": 1}" http://localhost:8080/questions/6/options
 
+REM test pulling questions to display
+curl --header "Content-Type: application/json" --request GET http://localhost:8080/nextquestion/<SITE_UUID>&reader=91693b12-284d-46d1-b6cb-6bc6be9acdd4
+
+
 REM negative test. optionDim of value 2 is not valid
 curl --header "Content-Type: application/json" --request POST --data "{\"option\": \"Female\", \"optionIndex\": 2, \"optionDim\": 2}" http://localhost:8080/questions/6/options
 
