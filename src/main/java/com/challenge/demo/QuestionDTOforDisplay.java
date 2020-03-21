@@ -8,10 +8,16 @@ import java.util.List;
  * @author steve
  *
  */
-public class QuestionDTOforDisplay extends QuestionDTO {
+public class QuestionDTOforDisplay extends QuestionBase {
+	private static final long serialVersionUID = 1L;
+
+	private Long siteId;
+
+	private int questionType;
+
 	private List<QuestionOptionDTO> options = null;
 	
-	public static QuestionDTOforDisplay build(Question question) {
+	public static QuestionDTOforDisplay build(QuestionPersist question) {
 		final QuestionDTOforDisplay obj = new QuestionDTOforDisplay();
 		obj.setSiteId(question.getSite().getSiteId());
 		obj.setQuestionId(question.getQuestionId());
@@ -19,10 +25,24 @@ public class QuestionDTOforDisplay extends QuestionDTO {
 		obj.setDimInfo(question.getDimInfo());
 		obj.setQuestion(question.getQuestion());
 		obj.setOptions(question.getOptions());
-		obj.setUpdatedAt(question.getUpdatedAt());
-		obj.setCreatedAt(question.getCreatedAt());
 
 		return obj;
+	}
+
+	public Long getSiteId() {
+		return siteId;
+	}
+
+	public void setSiteId(final Long siteId) {
+		this.siteId = siteId;
+	}
+
+	public int getQuestionType() {
+		return questionType;
+	}
+	
+	public void setQuestionType(int questionType) {
+		this.questionType = questionType;
 	}
 
 	public List<QuestionOptionDTO> getOptions() {

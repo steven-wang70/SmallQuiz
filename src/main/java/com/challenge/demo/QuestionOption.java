@@ -37,7 +37,7 @@ public class QuestionOption implements Serializable {
 
 	@ManyToOne(optional = true, fetch = FetchType.LAZY)
 	@JoinColumn(name = "question_id", referencedColumnName = "question_id")
-	private Question question;
+	private QuestionPersist question;
 
 	private String option;
 
@@ -84,11 +84,11 @@ public class QuestionOption implements Serializable {
 	public QuestionOption() {
 	}
 
-	public Question getQuestion() {
+	public QuestionPersist getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(final Question question) {
+	public void setQuestion(final QuestionPersist question) {
 		this.question = question;
 	}
 

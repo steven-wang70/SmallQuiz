@@ -35,7 +35,7 @@ public class QuestionController {
 		return siteRepository
 				.findById(incomingQuestion.getSiteId())
 				.map(site -> {
-					final Question newQ = QuestionDTO.createQuestion(incomingQuestion, site);
+					final QuestionPersist newQ = QuestionDTO.createQuestion(incomingQuestion, site);
 					return new ResponseEntity<>(QuestionDTO.build(questionRepository.save(newQ)), HttpStatus.CREATED);
 				})
 				.orElseGet(() -> ResponseEntity.notFound().build());
@@ -51,7 +51,7 @@ public class QuestionController {
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<QuestionDTO> updateQuestion(@RequestBody Question incomingQuestion, @PathVariable(value = "id") Long questionId) {
+	public ResponseEntity<QuestionDTO> updateQuestion(@RequestBody QuestionPersist incomingQuestion, @PathVariable(value = "id") Long questionId) {
 
 		return questionRepository
 				.findById(questionId)

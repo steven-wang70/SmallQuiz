@@ -24,7 +24,7 @@ public class QuestionOptionDTO {
 
 	private Date updatedAt;
 
-	public static QuestionOption transform(final QuestionOptionDTO newQADto, final Question question) {
+	public static QuestionOption transform(final QuestionOptionDTO newQADto, final QuestionPersist question) {
 		final QuestionOption newQa = new QuestionOption();
 		newQa.setOption(newQADto.getOption());
 		newQa.setOptionIndex(newQADto.getOptionIndex());

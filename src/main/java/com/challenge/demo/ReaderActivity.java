@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -45,7 +46,8 @@ public class ReaderActivity implements Serializable {
 	@JoinColumn(name = "question_id", table = "question", referencedColumnName = "question_id")
 	private Long questionId;
 
-	@javax.persistence.Transient
+	// Ignore this field in persistence. We will manually persist it to another table.
+	@Transient
 	private List<Long> answers = new ArrayList<>();
 
 	public Long getId() {

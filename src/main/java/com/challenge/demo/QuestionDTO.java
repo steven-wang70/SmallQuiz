@@ -4,23 +4,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class QuestionDTO {
-
-	private Long questionId;
+public class QuestionDTO extends QuestionBase {
+	private static final long serialVersionUID = 1L;
 
 	private Long siteId;
 
 	private int questionType;
-	
-	private List<String> dimInfo;
-	
-	private String question;
 
 	private Date createdAt;
 
 	private Date updatedAt;
 	
-	public static QuestionDTO build(Question question) {
+	public static QuestionDTO build(QuestionPersist question) {
 		final QuestionDTO obj = new QuestionDTO();
 		obj.setSiteId(question.getSite().getSiteId());
 		obj.setQuestionId(question.getQuestionId());
@@ -33,18 +28,18 @@ public class QuestionDTO {
 		return obj;
 	}
 
-	public static List<QuestionDTO> build(List<Question> questions) {
+	public static List<QuestionDTO> build(List<QuestionPersist> questions) {
 		final List<QuestionDTO> ret = new ArrayList<>();
 
-		for (Question question : questions) {
+		for (QuestionPersist question : questions) {
 			ret.add(build(question));
 		}
 
 		return ret;
 	}
 
-	public static Question createQuestion(final QuestionDTO incomingQuestion, final Site site) {
-		final Question newQ = new Question();
+	public static QuestionPersist createQuestion(final QuestionDTO incomingQuestion, final Site site) {
+		final QuestionPersist newQ = new QuestionPersist();
 		newQ.setSite(site);
 		newQ.setQuestion(incomingQuestion.getQuestion());
 		newQ.setQuestionType(QuestionType.fromCode((incomingQuestion.getQuestionType())));
@@ -68,22 +63,6 @@ public class QuestionDTO {
 	public void setQuestionType(int questionType) {
 		this.questionType = questionType;
 	}
-	
-	public List<String> getDimInfo() {
-		return dimInfo;
-	}
-	
-	public void setDimInfo(List<String> dimInfo) {
-		this.dimInfo = dimInfo;
-	}
-	
-	public String getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(final String question) {
-		this.question = question;
-	}
 
 	public Date getCreatedAt() {
 		return createdAt;
@@ -99,13 +78,5 @@ public class QuestionDTO {
 
 	public void setUpdatedAt(final Date updatedAt) {
 		this.updatedAt = updatedAt;
-	}
-
-	public Long getQuestionId() {
-		return questionId;
-	}
-
-	public void setQuestionId(final Long questionId) {
-		this.questionId = questionId;
 	}
 }
