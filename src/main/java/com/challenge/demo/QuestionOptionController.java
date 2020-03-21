@@ -24,7 +24,7 @@ public class QuestionOptionController {
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<QuestionOptionDTO> updateQuestionAnswer(@RequestBody QuestionOption incomingQuestionOption, @PathVariable(value = "id") Long optionId) {
+	public ResponseEntity<QuestionOptionDTO> updateQuestionOption(@RequestBody QuestionOption incomingQuestionOption, @PathVariable(value = "id") Long optionId) {
 		return qaRepository
 				.findById(optionId)
 				.map(questionOption -> {
@@ -35,7 +35,7 @@ public class QuestionOptionController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<QuestionOptionDTO> deleteQuestionAnswer(@PathVariable(value = "id") Long optionId) {
+	public ResponseEntity<QuestionOptionDTO> deleteQuestionOption(@PathVariable(value = "id") Long optionId) {
 		return qaRepository
 				.findById(optionId)
 				.map(questionOption -> {

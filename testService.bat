@@ -31,3 +31,7 @@ REM edit problem options
 REM {"id":5,"questionId":2,"option":"The do not have toes silly","optionIndex":3,"optionDim":null,"isCorrectOption":false,"createdAt":"2020-03-21T00:51:14.760+0000","updatedAt":"2020-03-21T00:51:14.760+0000"}
 curl --header "Content-Type: application/json" --request PUT --data "{\"optionId\": 5, \"option\": \"UPDATED: The do not have toes silly\", \"optionIndex\": 5}" http://localhost:8080/options/5
 
+REM post an answer
+curl --header "Content-Type: application/json" --request POST --data "{\"readerUUID\": \"2da235c3-1543-4f78-acaa-53072c8a1d08\", \"questionId\": 2, \"answers\": [3, 4]}" http://localhost:8080/answers
+
+

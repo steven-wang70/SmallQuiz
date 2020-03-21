@@ -45,10 +45,10 @@ public class QuestionDisplay implements Serializable {
 	@Column(nullable = false, name = "reader_uuid")
 	private UUID readerUUID;
 
-	@JoinColumn(name = "site_id", referencedColumnName = "site_id")
+	@JoinColumn(name = "site_id", table = "site", referencedColumnName = "site_id")
 	private Long siteId;
 
-	@JoinColumn(name = "question_id", referencedColumnName = "question_id")
+	@JoinColumn(name = "question_id", table = "question", referencedColumnName = "question_id")
 	private Long questionId;
 
 	public Long getLastQuestion() {
