@@ -86,14 +86,14 @@ public class QuestionController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<QuestionOptionDTO> createQuestionOptions(@PathVariable(value = "id") Long questionId,
 																   @RequestBody QuestionOptionDTO newQADto) {
-		if (!QuestionOption.ValidateOptionDim(newQADto.getOptionDim())) {
+		if (!QuestionOptionPersist.ValidateOptionDim(newQADto.getOptionDim())) {
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();
 		}
 
 		return questionRepository
 				.findById(questionId)
 				.map(question -> {
-					final QuestionOption newQa = QuestionOptionDTO.transform(newQADto, question);
+					final QuestionOptionPersist newQa = QuestionOptionDTO.transform(newQADto, question);
 					return new ResponseEntity<>(QuestionOptionDTO.build(qaRepository.save(newQa)), HttpStatus.CREATED);
 				})
 				.orElseGet(() -> ResponseEntity.notFound().build());

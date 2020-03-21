@@ -24,7 +24,7 @@ public class QuestionOptionController {
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<QuestionOptionDTO> updateQuestionOption(@RequestBody QuestionOption incomingQuestionOption, @PathVariable(value = "id") Long optionId) {
+	public ResponseEntity<QuestionOptionDTO> updateQuestionOption(@RequestBody QuestionOptionPersist incomingQuestionOption, @PathVariable(value = "id") Long optionId) {
 		return qaRepository
 				.findById(optionId)
 				.map(questionOption -> {

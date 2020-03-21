@@ -32,7 +32,7 @@ public class QuestionPersist extends QuestionBase {
 	private QuestionType questionType;
 
 	@OneToMany(mappedBy = "question", fetch = FetchType.EAGER)
-	private List<QuestionOption> options = new ArrayList<>();
+	private List<QuestionOptionPersist> options = new ArrayList<>();
 
 	@Column(nullable = false, updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -70,7 +70,7 @@ public class QuestionPersist extends QuestionBase {
 		this.questionType = questionType;
 	}
 	
-	public List<QuestionOption> getOptions() {
+	public List<QuestionOptionPersist> getOptions() {
 		return options;
 	}
 }

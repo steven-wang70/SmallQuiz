@@ -13,7 +13,7 @@ public class QuestionDTOforDisplay extends QuestionBase {
 
 	private int questionType;
 
-	private List<QuestionOptionDTO> options = null;
+	private List<QuestionOptionDTOforDisplay> options = null;
 	
 	public static QuestionDTOforDisplay build(QuestionPersist question) {
 		final QuestionDTOforDisplay obj = new QuestionDTOforDisplay();
@@ -43,19 +43,19 @@ public class QuestionDTOforDisplay extends QuestionBase {
 		this.questionType = questionType;
 	}
 
-	public List<QuestionOptionDTO> getOptions() {
+	public List<QuestionOptionDTOforDisplay> getOptions() {
 		return options;
 	}
 	
-	public void setOptions(List<QuestionOption> options) {
+	public void setOptions(List<QuestionOptionPersist> options) {
 		if (options == null) {
 			this.options = null;
 			return;
 		}
 		
-		this.options = new ArrayList<QuestionOptionDTO>();
-		for (QuestionOption qo : options) {
-			this.options.add(QuestionOptionDTO.build(qo));
+		this.options = new ArrayList<QuestionOptionDTOforDisplay>();
+		for (QuestionOptionPersist qo : options) {
+			this.options.add(QuestionOptionDTOforDisplay.build(qo));
 		}
 	}
 }

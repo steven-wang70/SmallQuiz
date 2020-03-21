@@ -3,38 +3,20 @@ package com.challenge.demo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
-public class QuestionOptionDTO extends QuestionOptionBase {
+public class QuestionOptionDTOforDisplay extends QuestionOptionBase {
 
 	private Long questionId;
 
-	private Date createdAt;
-
-	private Date updatedAt;
-
-	public static QuestionOptionPersist transform(final QuestionOptionDTO newQADto, final QuestionPersist question) {
-		final QuestionOptionPersist newQa = new QuestionOptionPersist();
-		newQa.setOption(newQADto.getOption());
-		newQa.setOptionIndex(newQADto.getOptionIndex());
-		newQa.setOptionDim(newQADto.getOptionDim());
-		newQa.setIsCorrectOption(newQADto.isCorrectOption());
-		newQa.setQuestion(question);
-		
-		return newQa;
-	}
-
-	public static QuestionOptionDTO build(final QuestionOptionPersist save) {
-		final QuestionOptionDTO newQaDto = new QuestionOptionDTO();
+	public static QuestionOptionDTOforDisplay build(final QuestionOptionPersist save) {
+		final QuestionOptionDTOforDisplay newQaDto = new QuestionOptionDTOforDisplay();
 
 		newQaDto.setId(save.getId());
 		newQaDto.setOption(save.getOption());
 		newQaDto.setOptionIndex(save.getOptionIndex());
 		newQaDto.setOptionDim(save.getOptionDim());
 		newQaDto.setIsCorrectOption(save.isCorrectOption());
-		newQaDto.setCreatedAt(save.getCreatedAt());
-		newQaDto.setUpdatedAt(save.getUpdatedAt());
 		newQaDto.setQuestionId(save.getQuestion().getQuestionId());
 
 		return newQaDto;
@@ -45,9 +27,9 @@ public class QuestionOptionDTO extends QuestionOptionBase {
 	 * @author steve
 	 *
 	 */
-	private static class CompareQuestionOption implements Comparator<QuestionOptionDTO>
+	private static class CompareQuestionOption implements Comparator<QuestionOptionDTOforDisplay>
 	{
-	    public int compare(QuestionOptionDTO a, QuestionOptionDTO b)
+	    public int compare(QuestionOptionDTOforDisplay a, QuestionOptionDTOforDisplay b)
 	    {
 	    	byte aDim = a.getOptionDim() == null ? 0 : a.getOptionDim().byteValue();
 	    	byte bDim = b.getOptionDim() == null ? 0 : b.getOptionDim().byteValue();
@@ -64,8 +46,8 @@ public class QuestionOptionDTO extends QuestionOptionBase {
 	    } 
 	} 
 
-	public static List<QuestionOptionDTO> build(final List<QuestionOptionPersist> options) {
-		final List<QuestionOptionDTO> ret = new ArrayList<>();
+	public static List<QuestionOptionDTOforDisplay> build(final List<QuestionOptionPersist> options) {
+		final List<QuestionOptionDTOforDisplay> ret = new ArrayList<>();
 		for (QuestionOptionPersist qa : options) {
 			ret.add(build(qa));
 		}
@@ -82,21 +64,5 @@ public class QuestionOptionDTO extends QuestionOptionBase {
 
 	public void setQuestionId(final Long questionId) {
 		this.questionId = questionId;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(final Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(final Date updatedAt) {
-		this.updatedAt = updatedAt;
 	}
 }
