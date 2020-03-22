@@ -1,3 +1,6 @@
+# What's New
+1) Support matrix questions. Please see details in API documentatio **Create a Matrix Question** and **Create an Option for Matrix Questions** for how to create questions and question options for matrix questions;
+2) Pull questions to display for a user, and send users answer to question to the server. Please see details in the **For Readers** part of the API documentation.
 # Getting Started
 
 This project contains:
@@ -152,9 +155,8 @@ MATRIX(4)
 ##### Create a Normal Question
 Request:
 >curl --header "Content-Type: application/json" \
-  	 --request POST \
-  	 --data '{"siteId":1, "question": "how many toes does a pig have?"}' \
-  	 http://localhost:8080/questions
+     --request POST 
+     --data "{"siteId":1, "questionType": 1, "question": "how many toes does a pig have?"}" \ http://localhost:8080/sites/1/questions
 
 Response:
 >{
@@ -172,7 +174,7 @@ Request:
 >curl --header "Content-Type: application/json" \
      --request POST \
      --data "{"siteId":1, "questionType": 4, "dimInfo": ["Age", "Gender"], "question": "Please tell us a bit about yourself?"}" \
-     http://localhost:8080/questions
+     http://localhost:8080/sites/1/questions
 
 **NOTE:** For matrix questions, there is an additional property of array, which contains two element. The 1st element is the title for top to bottom options, the 2nd element is the title for left to right options.
 
@@ -273,9 +275,9 @@ Response:
 #### Create Question Option
 Request:
 >curl --header "Content-Type: application/json" \
-  	 --request POST \
-  	 --data '{"answer": "4 toes","isisCorrectOption": true}' \
-  	 http://localhost:8080/questions/2/options
+    --request POST \
+    --data "{"option": "4 toes", "optionIndex": 2, "isCorrectAnswer": true}" \
+    http://localhost:8080/questions/2/options
   	 
 Response:
 >{
@@ -289,26 +291,27 @@ Response:
   "isCorrectOption": false
 }
 
-#### Create Option for Matrix Question
+**NOTE:** The display of question options is ordered by user defined **optionIndex**, not the server-generated **id**.
+#### Create an Option for Matrix Questions
 Request:
 >curl --header "Content-Type: application/json" \
-     --request POST \
-     --data "{"option": "^< 18", "optionIndex": 1, "optionDim": 0}" \
-     http://localhost:8080/questions/6/options
+    --request POST --data "{"option": "Male", "optionIndex": 1,\"optionDim": 1}" \
+    http://localhost:8080/questions/6/options
+
  
  Response:
  >{
-  "id": 7,
-  "option": "< 18",
+  "id": 10,
+  "option": "Male",
   "optionIndex": 1,
-  "optionDim": 0,
+  "optionDim": 1,
+  "isCorrectOption": false,
   "questionId": 6,
-  "createdAt": "2020-03-21T23:32:52.875+0000",
-  "updatedAt": "2020-03-21T23:32:52.875+0000",
-  "isCorrectOption": false
+  "createdAt": "2020-03-22T21:58:54.091+0000",
+  "updatedAt": "2020-03-22T21:58:54.091+0000"
 }
 
-**NOTE:** For matrix question options, an additional property of "optionDim" is required to specify whether this option to be displayed top to bottom or left to right. If the value is 1, then it will be displayed left to right. Otherwise if it is 0 or null, it is displayed top to bottom.
+**NOTE:** For matrix question options, an additional property of **optionDim** is required to specify whether this option to be displayed top to bottom or left to right. If the value is 1, then it will be displayed left to right. Otherwise if it is 0 or null, it is displayed top to bottom.
 #### Edit Question Option
 Request:
 >curl --header "Content-Type: application/json" \
