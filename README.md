@@ -1,18 +1,18 @@
 # What's New
-1) Support matrix questions. Please see details in API documentatio **Create a Matrix Question** and **Create an Option for Matrix Questions** for how to create questions and question options for matrix questions;
+1) Support matrix questions. Please see details in API documentation **Create a Matrix Question** and **Create an Option for Matrix Questions** for how to create questions and question options for matrix questions;
 2) Pull questions to display for a user, and send users answer to question to the server. Please see details in the **For Readers** part of the API documentation.
 # Getting Started
 
 This project contains:
-1) A Spring Boot application that provide RESTful services for partners to manipulate their online embedded questions:
+1) A Spring Boot application that provides RESTful services for partners to manipulate their online embedded questions:
     1) Create/Edit/Delete site informations;
     2) Create/Edit/Delete question definitions;
     3) Create/Edit/Delete question option definitions;
-2) The same Spring Boot application that provide RESTful services for reader/browser from online content to:
+2) The same Spring Boot application that provides RESTful services for reader/browser from online content to:
     1) Pull full question definitions to be displayed in the online content;
     2) Receive readers' response to an embedded question.
-3) A test command line batch command to simulate the clinent run basic smoke test to the service;
-4) A JUnit implementaion framework with two testcases to show case how to implement JUnit test cases for the service to do end-to-end test.
+3) A test command line batch command to simulate the client run basic smoke test to the service;
+4) A JUnit implementation framework with two test cases to show case how to implement JUnit test cases for the service to do end-to-end test.
 
 # How to Run the Service and Tests
 
@@ -31,15 +31,15 @@ Here we will only describe how to run from Eclipse environment. It does not cove
 4) However, in the testService.batch, there is a command template is commented out. Because it could not be added to this batch file easily. This command is testing pulling questions from the service for display. To run this test, you need to copy this template out, replaced its tag <SITE_UUID> with the real UUID generated in the last test. Then run this command multiple time in the command line. You will find every time, it will pull the next question.
 
 ## Run JUnit Tests
-1) In the Eclipse "Package Explorer", locate the java file RESTfulTests.java in the folder src/test/java. It is a test sute class.
+1) In the Eclipse "Package Explorer", locate the java file RESTfulTests.java in the folder src/test/java. It is a test suite class.
 2) Right click it, and select context menu "Run As/JUnit Test", you will see JUnit test started. For each test case, it will start/stop the Spring Boot application service, and run tests by sending HTTP requests to the service.
 
 # Assumptions
 For simplicity, this project will continue to use the H2 in memory database, which means when the service is stopped, the data is gone. So every time the service is started, it is guaranteed service data is clearly in consistent state.
 
 # Security Considerations
-The biggest concern about the current implementation is that the srevice can be abused from partner and reader side.
-What if a partner tries to access/manipulate to questons of a website that they do not have ownership? What if a reader tries to pull questions and send answers from outside a webpage of the specified website? The current implementation has no solution to such attacks yet.
+The biggest concern about the current implementation is that the service can be abused from partner and reader side.
+What if a partner tries to access/manipulate to questions of a website that they do not have ownership? What if a reader tries to pull questions and send answers from outside a webpage of the specified website? The current implementation has no solution to such attacks yet.
 But we have potential solutions for such attacks.
 
 ## Security for Partners
@@ -47,17 +47,17 @@ For partners, we could use client side authentication to identify a partner. As 
 
 ## Security for Readers
 For readers, we could verify whether the request is valid by checking from which website the request comes from.
-For invalid accesses, we could keep the logging of such activities, but just returns to client side HTTP satus NOT_FOUND(404), and nothing else.
+For invalid accesses, we could keep the logging of such activities, but just returns to client side HTTP status NOT_FOUND(404), and nothing else.
 
 # Scaling to Next Level
-There are two types activities to access this service. One is partner activities to define questions, another one is reader activities to pull question and send back answers. Since questions are defined once and can be used many times, so the access volumne from partners is smaller comparing to reader activities.
-From readers's perspective, there are two activities. One is pulling questions, another one is sending back answers. Since readers only reply to a portion of displayed questions, so the biggest acsess volume happens with the operation of pulling questions from the service. To perform better with such high volume access, we could manage a in memory cache for questions pulled by readers.
+There are two types activities to access this service. One is partner activities to define questions, another one is reader activities to pull question and send back answers. Since questions are defined once and can be used many times, so the access volume from partners is smaller comparing to reader activities.
+From readers' perspective, there are two activities. One is pulling questions, another one is sending back answers. Since readers only reply to a portion of displayed questions, so the biggest access volume happens with the operation of pulling questions from the service. To perform better with such high volume access, we could manage a in memory cache for questions pulled by readers.
 For even higher volume access, we may consider splitting the service into two microservices. One for partners to manage their questions, another one for readers to pull questions and send back answers.
 
 # API Documentation
 
 ## For Partners
-### Manage Site Infomation
+### Manage Site Information
 #### Create Site
 Request:
 >curl --header "Content-Type: application/json" \
@@ -414,7 +414,7 @@ Request:
      --request GET \
      http://localhost:8080/nextquestion/**<SITE_UUID>**?reader=91693b12-284d-46d1-b6cb-6bc6be9acdd4
 
-**NOTE:** This request will pull the next queston to be displayed. The response contains all information for display, but do not contain management related informations such as created/updated timestamp.
+**NOTE:** This request will pull the next question to be displayed. The response contains all information for display, but do not contain management related informations such as created/updated timestamp.
 
 Response:
 >{ \
