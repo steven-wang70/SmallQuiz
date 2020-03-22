@@ -29,26 +29,6 @@ public class QuestionController {
 	@Autowired
 	QuestionOptionRepository qaRepository;
 
-	@PostMapping()
-	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<QuestionDTO> createQuestion(@RequestBody QuestionDTO incomingQuestion) {
-		return siteRepository
-				.findById(incomingQuestion.getSiteId())
-				.map(site -> {
-					final QuestionPersist newQ = QuestionDTO.createQuestion(incomingQuestion, site);
-					return new ResponseEntity<>(QuestionDTO.build(questionRepository.save(newQ)), HttpStatus.CREATED);
-				})
-				.orElseGet(() -> ResponseEntity.notFound().build());
-	}
-
-	@GetMapping()
-	public ResponseEntity<List<QuestionDTO>> getSites() {
-		return Optional
-				.ofNullable(questionRepository.findAll())
-				.map(questions -> ResponseEntity.ok(QuestionDTO.build(questions)))
-				.orElseGet(() -> ResponseEntity.notFound().build());
-	}
-
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
 	public ResponseEntity<QuestionDTO> updateQuestion(@RequestBody QuestionPersist incomingQuestion, @PathVariable(value = "id") Long questionId) {

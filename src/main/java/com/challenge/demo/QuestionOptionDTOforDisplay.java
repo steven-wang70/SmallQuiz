@@ -5,6 +5,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * Question option object for display only. It will ignore created/updated timestamp.
+ * @author steve
+ *
+ */
 public class QuestionOptionDTOforDisplay extends QuestionOptionBase {
 
 	private Long questionId;

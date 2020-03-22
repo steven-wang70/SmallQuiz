@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is specially used for returning questions to display, which contains the whole options.
+ * This class is specially used for returning questions to display, which contains 
+ * the whole options, but ignore the created/updated timestamp.
  * @author steve
  *
  */
