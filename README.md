@@ -146,9 +146,9 @@ Response:
 
 ### Manage Questions
 #### Question Type Definitions
->TRIVIA(1)
-POOL(2)
-CHECKBOX(3)
+>TRIVIA(1) \
+POOL(2) \
+CHECKBOX(3) \
 MATRIX(4)
 
 #### Create Question
