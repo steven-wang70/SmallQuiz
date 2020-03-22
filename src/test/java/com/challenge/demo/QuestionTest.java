@@ -22,12 +22,12 @@ public class QuestionTest extends RESTfulTestCase {
 		// Create a question.
 		httpStatus = createEntity("/questions", "{\"siteId\":1, \"questionType\": 1, \"question\": \"how many toes does a pig have?\"}", response);
 		assertEquals(HttpStatus.CREATED.value(), httpStatus);
-		assertTrue(response.toString().startsWith("{\"questionId\":2,\"siteId\":1,\"questionType\":1,\"dimInfo\":null,\"question\":\"how many toes does a pig have?\",\"createdAt\":"));
+		assertTrue(response.toString().startsWith("{\"questionId\":2,\"dimInfo\":[],\"question\":\"how many toes does a pig have?\",\"siteId\":1,\"questionType\":1,\"createdAt\":"));
 		
 		// Get question. Should return JSON array with one element.
 		httpStatus = retrieveEntity("/questions", response);
 		assertEquals(HttpStatus.OK.value(), httpStatus);
-		assertTrue(response.toString().startsWith("[{\"questionId\":2,\"siteId\":1,\"questionType\":1,\"dimInfo\":null,\"question\":\"how many toes does a pig have?\""));
+		assertTrue(response.toString().startsWith("[{\"questionId\":2,\"dimInfo\":null,\"question\":\"how many toes does a pig have?\",\"siteId\":1,\"questionType\":1,\"createdAt\""));
 		
 		
 	}
