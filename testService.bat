@@ -5,7 +5,7 @@ echo.
 echo.
 
 REM Create the Trivia Question for the Site
-curl --header "Content-Type: application/json" --request POST --data "{\"siteId\":1, \"questionType\": 1, \"question\": \"how many toes does a pig have?\"}" http://localhost:8080/questions
+curl --header "Content-Type: application/json" --request POST --data "{\"siteId\":1, \"questionType\": 1, \"question\": \"how many toes does a pig have?\"}" http://localhost:8080/sites/1/questions
 echo.
 echo.
 
@@ -23,7 +23,7 @@ echo.
 
 
 REM Create the matrix Question for the Site
-curl --header "Content-Type: application/json" --request POST --data "{\"siteId\":1, \"questionType\": 4, \"dimInfo\": [\"Age\", \"Gender\"], \"question\": \"Please tell us a bit about yourself?\"}" http://localhost:8080/questions
+curl --header "Content-Type: application/json" --request POST --data "{\"siteId\":1, \"questionType\": 4, \"dimInfo\": [\"Age\", \"Gender\"], \"question\": \"Please tell us a bit about yourself?\"}" http://localhost:8080/sites/1/questions
 echo.
 echo.
 REM dim top to bottom

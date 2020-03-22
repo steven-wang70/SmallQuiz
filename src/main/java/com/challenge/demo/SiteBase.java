@@ -1,26 +1,22 @@
 package com.challenge.demo;
 
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-@Entity
-@Table(name = "site")
-@EntityListeners(AuditingEntityListener.class)
-public class Site {
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+@MappedSuperclass
+public abstract class SiteBase {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "site_id")
@@ -54,14 +50,26 @@ public class Site {
 		return siteId;
 	}
 
+	public void setSiteId(Long siteId) {
+		this.siteId = siteId;
+	}
+	
 	public Date getCreatedAt() {
 		return createdAt;
 	}
 
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
+	
 	public Date getUpdatedAt() {
 		return updatedAt;
 	}
 
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
+	
 	public String getUrl() {
 		return url;
 	}
@@ -74,7 +82,7 @@ public class Site {
 	public boolean equals(final Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		final Site site = (Site) o;
+		final SiteBase site = (SiteBase) o;
 		return Objects.equals(siteId, site.siteId) &&
 				Objects.equals(siteUUID, site.siteUUID) &&
 				Objects.equals(url, site.url);

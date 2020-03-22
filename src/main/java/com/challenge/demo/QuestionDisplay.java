@@ -29,7 +29,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @EntityListeners(AuditingEntityListener.class)
 public class QuestionDisplay {
 
-	QuestionDisplay(Site site, UUID readerUUID) {
+	QuestionDisplay(SitePersist site, UUID readerUUID) {
 		this.siteId = site.getSiteId();
 		this.readerUUID = readerUUID;
 	}

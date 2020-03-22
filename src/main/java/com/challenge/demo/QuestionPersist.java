@@ -26,7 +26,7 @@ public class QuestionPersist extends QuestionBase {
 
 	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	@JoinColumn(name = "site_id", referencedColumnName = "site_id")
-	private Site site;
+	private SitePersist site;
 
 	@Column(name = "question_type", nullable = false, columnDefinition = "TINYINT")
 	private QuestionType questionType;
@@ -54,11 +54,11 @@ public class QuestionPersist extends QuestionBase {
 		return updatedAt;
 	}
 
-	public Site getSite() {
+	public SitePersist getSite() {
 		return site;
 	}
 
-	public void setSite(Site site) {
+	public void setSite(SitePersist site) {
 		this.site = site;
 	}
 

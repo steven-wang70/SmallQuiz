@@ -39,7 +39,7 @@ public class QuestionDisplayController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		Site site = siteRepository.findByUuid(siteUUID);
+		SitePersist site = siteRepository.findByUuid(siteUUID);
 		if (site == null) {
 			return ResponseEntity.notFound().build();
 		}

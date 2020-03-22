@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/questions")
@@ -38,6 +37,8 @@ public class QuestionController {
 				.map(question -> {
 					question.setQuestion(incomingQuestion.getQuestion());
 					question.setSite(incomingQuestion.getSite());
+					question.setQuestionType(incomingQuestion.getQuestionType());
+					question.setDimInfo(incomingQuestion.getDimInfo());
 					return new ResponseEntity<>(QuestionDTO.build(questionRepository.save(question)), HttpStatus.OK);
 				})
 				.orElseGet(() -> ResponseEntity.notFound().build());
@@ -64,7 +65,7 @@ public class QuestionController {
 
 	@PostMapping("/{id}/options")
 	@ResponseStatus(HttpStatus.CREATED)
-	public ResponseEntity<QuestionOptionDTO> createQuestionOptions(@PathVariable(value = "id") Long questionId,
+	public ResponseEntity<QuestionOptionDTO> createQuestionOption(@PathVariable(value = "id") Long questionId,
 																   @RequestBody QuestionOptionDTO newQADto) {
 		if (!QuestionOptionPersist.ValidateOptionDim(newQADto.getOptionDim())) {
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).build();

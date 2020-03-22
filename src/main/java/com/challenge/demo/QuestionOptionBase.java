@@ -91,7 +91,7 @@ public abstract class QuestionOptionBase {
 		this.option = Option;
 	}
 
-	public boolean isCorrectOption() {
+	public boolean getIsCorrectOption() {
 		return isCorrectOption;
 	}
 

@@ -274,7 +274,7 @@ Response:
 Request:
 >curl --header "Content-Type: application/json" \
   	 --request POST \
-  	 --data '{"answer": "4 toes","isCorrectAnswer": true}' \
+  	 --data '{"answer": "4 toes","isisCorrectOption": true}' \
   	 http://localhost:8080/questions/2/options
   	 
 Response:
@@ -286,7 +286,7 @@ Response:
   "questionId": 2,
   "createdAt": "2020-03-21T23:32:52.593+0000",
   "updatedAt": "2020-03-21T23:32:52.593+0000",
-  "correctOption": false
+  "isCorrectOption": false
 }
 
 #### Create Option for Matrix Question
@@ -305,7 +305,7 @@ Request:
   "questionId": 6,
   "createdAt": "2020-03-21T23:32:52.875+0000",
   "updatedAt": "2020-03-21T23:32:52.875+0000",
-  "correctOption": false
+  "isCorrectOption": false
 }
 
 **NOTE:** For matrix question options, an additional property of "optionDim" is required to specify whether this option to be displayed top to bottom or left to right. If the value is 1, then it will be displayed left to right. Otherwise if it is 0 or null, it is displayed top to bottom.
@@ -313,7 +313,7 @@ Request:
 Request:
 >curl --header "Content-Type: application/json" \
   	 --request PUT \
-  	 --data '{"answer": "3 toes","isCorrectAnswer": false}' \
+  	 --data '{"answer": "3 toes","isisCorrectOption": false}' \
   	 http://localhost:8080/options/3
   	 
 Response:
@@ -325,7 +325,7 @@ Response:
   "questionId": 2,
   "createdAt": "2020-03-21T23:32:52.593+0000",
   "updatedAt": "2020-03-21T23:32:52.593+0000",
-  "correctOption": false
+  "isCorrectOption": false
 }
 
 #### Delete Question Option
@@ -343,7 +343,7 @@ Response:
   "questionId": 2,
   "createdAt": "2020-03-21T23:32:52.593+0000",
   "updatedAt": "2020-03-21T23:32:52.593+0000",
-  "correctOption": false
+  "isCorrectOption": false
 }
 
 #### List Question Options
@@ -362,7 +362,7 @@ Request:
     "questionId": 2,
     "createdAt": "2020-03-22T19:47:41.022+0000",
     "updatedAt": "2020-03-22T19:47:41.022+0000",
-    "correctOption": false
+    "isCorrectOption": false
   },
   {
     "id": 3,
@@ -372,7 +372,7 @@ Request:
     "questionId": 2,
     "createdAt": "2020-03-22T19:47:40.938+0000",
     "updatedAt": "2020-03-22T19:47:40.938+0000",
-    "correctOption": false
+    "isCorrectOption": false
   },
   {
     "id": 5,
@@ -382,7 +382,7 @@ Request:
     "questionId": 2,
     "createdAt": "2020-03-22T19:47:41.103+0000",
     "updatedAt": "2020-03-22T19:47:41.103+0000",
-    "correctOption": false
+    "isCorrectOption": false
   }
 ]
 
@@ -401,7 +401,7 @@ Response:
   "questionId": 2,
   "createdAt": "2020-03-21T23:32:52.593+0000",
   "updatedAt": "2020-03-21T23:32:52.593+0000",
-  "correctOption": false
+  "isCorrectOption": false
 }
 
 ## For Readers
@@ -430,7 +430,7 @@ Response:
       "optionIndex": 1,
       "optionDim": 0,
       "questionId": 6,
-      "correctOption": false
+      "isCorrectOption": false
     },
     {
       "id": 8,
@@ -438,7 +438,7 @@ Response:
       "optionIndex": 2,
       "optionDim": 0,
       "questionId": 6,
-      "correctOption": false
+      "isCorrectOption": false
     },
     {
       "id": 9,
@@ -446,7 +446,7 @@ Response:
       "optionIndex": 3,
       "optionDim": 0,
       "questionId": 6,
-      "correctOption": false
+      "isCorrectOption": false
     },
     {
       "id": 10,
@@ -454,7 +454,7 @@ Response:
       "optionIndex": 1,
       "optionDim": 1,
       "questionId": 6,
-      "correctOption": false
+      "isCorrectOption": false
     },
     {
       "id": 11,
@@ -462,7 +462,7 @@ Response:
       "optionIndex": 2,
       "optionDim": 1,
       "questionId": 6,
-      "correctOption": false
+      "isCorrectOption": false
     }
   ]
 }

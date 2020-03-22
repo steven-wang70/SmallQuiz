@@ -36,7 +36,7 @@ public class QuestionDTO extends QuestionBase {
 		return ret;
 	}
 
-	public static QuestionPersist createQuestion(final QuestionDTO incomingQuestion, final Site site) {
+	public static QuestionPersist transform(final QuestionDTO incomingQuestion, final SitePersist site) {
 		final QuestionPersist newQ = new QuestionPersist();
 		newQ.setSite(site);
 		newQ.setQuestion(incomingQuestion.getQuestion());

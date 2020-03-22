@@ -21,7 +21,7 @@ public class QuestionOptionDTOforDisplay extends QuestionOptionBase {
 		newQaDto.setOption(save.getOption());
 		newQaDto.setOptionIndex(save.getOptionIndex());
 		newQaDto.setOptionDim(save.getOptionDim());
-		newQaDto.setIsCorrectOption(save.isCorrectOption());
+		newQaDto.setIsCorrectOption(save.getIsCorrectOption());
 		newQaDto.setQuestionId(save.getQuestion().getQuestionId());
 
 		return newQaDto;

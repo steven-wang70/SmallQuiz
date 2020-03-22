@@ -19,7 +19,7 @@ public class QuestionOptionDTO extends QuestionOptionBase {
 		newQa.setOption(newQADto.getOption());
 		newQa.setOptionIndex(newQADto.getOptionIndex());
 		newQa.setOptionDim(newQADto.getOptionDim());
-		newQa.setIsCorrectOption(newQADto.isCorrectOption());
+		newQa.setIsCorrectOption(newQADto.getIsCorrectOption());
 		newQa.setQuestion(question);
 		
 		return newQa;
@@ -32,7 +32,7 @@ public class QuestionOptionDTO extends QuestionOptionBase {
 		newQaDto.setOption(save.getOption());
 		newQaDto.setOptionIndex(save.getOptionIndex());
 		newQaDto.setOptionDim(save.getOptionDim());
-		newQaDto.setIsCorrectOption(save.isCorrectOption());
+		newQaDto.setIsCorrectOption(save.getIsCorrectOption());
 		newQaDto.setCreatedAt(save.getCreatedAt());
 		newQaDto.setUpdatedAt(save.getUpdatedAt());
 		newQaDto.setQuestionId(save.getQuestion().getQuestionId());

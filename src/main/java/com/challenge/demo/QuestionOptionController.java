@@ -29,6 +29,9 @@ public class QuestionOptionController {
 				.findById(optionId)
 				.map(questionOption -> {
 					questionOption.setOption(incomingQuestionOption.getOption());
+					questionOption.setOptionIndex(incomingQuestionOption.getOptionIndex());
+					questionOption.setOptionDim(incomingQuestionOption.getOptionDim());
+					questionOption.setIsCorrectOption(incomingQuestionOption.getIsCorrectOption());
 					return new ResponseEntity<>(QuestionOptionDTO.build(qaRepository.save(questionOption)), HttpStatus.OK);
 				})
 				.orElseGet(() -> ResponseEntity.notFound().build());
