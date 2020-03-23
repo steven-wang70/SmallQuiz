@@ -44,6 +44,7 @@ public class QuestionOptionPersist extends QuestionOptionBase {
 
 	@Override
 	public Long getQuestionId() {
+		if (question == null) return null;
 		return question.getQuestionId();
 	}
 	
